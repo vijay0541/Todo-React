@@ -1,43 +1,69 @@
-import React, { useState } from 'react';
-import './App.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { addTodo, removeTodo } from './utils/todoSlice';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTodos, addTodo, removeTodo } from "./utils/todoSlice";
 
-function App() {
+const App = () => {
   const dispatch = useDispatch();
-  const todos = useSelector((state) => state.todos.todos);
+  const { todos } = useSelector((state) => state.todos);
+  const [newTodo, setNewTodo] = useState("");
 
-  const [task, setTask] = useState('');
+  // Fetch todos when the component mounts
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, [dispatch]);
 
-  const handleChange = (event) => {
-    setTask(event.target.value);
-  };
-
-  const addTask = () => {
-    if (task !== '') {
-      dispatch(addTodo(task));
-      setTask('');
+  // Handle adding a new todo
+  const handleAddTodo = () => {
+    if (newTodo!=='') {
+      dispatch(addTodo(newTodo));
+      setNewTodo("");
     }
   };
 
-  const removeTask = (index) => {
-    dispatch(removeTodo(index)); 
+  // Handle removing a todo
+  const handleRemoveTodo = (id) => {
+    dispatch(removeTodo(id));
   };
 
   return (
-    <div className="App">
-      <h1>To-Do List</h1>
-      <input type="text" value={task} onChange={handleChange} placeholder="Add a task"/>
-      <button onClick={addTask}>Add Task</button>
-      <ul className='items'>
-        {todos.map((task, index) => (
-          <li key={index}>
-            {task} <button onClick={() => removeTask(index)}>Remove</button>
-          </li>
-        ))}
+    <div>
+      <div className="input-tags">
+        <h1>To-Do List</h1>
+      </div>
+
+      <div className="input-tag">
+        <input type="text" placeholder="Enter a new task" value={newTodo} onChange={(e) => setNewTodo(e.target.value)}/>
+        <button onClick={handleAddTodo}>Add Task</button>
+      </div>
+      
+      <ul>
+        {todos.length === 0 ? (
+          <p>No tasks available.</p>
+        ) : (
+          todos.map((todo) => (
+            <li key={todo.id}>
+              {todo.todo}
+              <button onClick={() => handleRemoveTodo(todo.id)}>Delete</button>
+            </li>
+          ))
+        )}
       </ul>
     </div>
   );
-}
+};
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
