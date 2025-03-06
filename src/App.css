@@ -1,14 +1,47 @@
-/* src/App.css */
+/* General button styling */
+button {
+  padding: 8px;
+  margin: 10px;
+  cursor: pointer;
+  border: none;
+  color: white;
+}
+
+button.input {
+  background-color: #28a745; 
+}
+
+button.input:hover {
+  background-color: #218838; 
+}
+
+li .edit {
+  background-color: #28a745; 
+}
+
+li .edit:hover {
+  background-color: #218838; 
+}
+
+li button {
+  background-color: #f44336; 
+}
+
+li button:hover {
+  background-color: #d32f2f; 
+}
 
 .App {
   text-align: center;
   margin: 20px;
 }
-.input-tags{
+
+.input-tags {
   display: flex;
   justify-content: center;
 }
-.input-tag{
+
+.input-tag {
   display: flex;
   justify-content: center;
 }
@@ -19,34 +52,44 @@ input {
   width: 300px;
 }
 
-button {
-  padding: 8px;
-  margin: 10px;
-  cursor: pointer;
-}
-
 ul {
   list-style-type: none;
   padding: 0;
 }
-.input{
-  background-color: #04AA6D; 
+
+.input {
+  background-color: #04AA6D;
   border: none;
   color: white;
 }
+
 li {
   padding: 10px;
   border: 1px solid #ddd;
   margin: 5px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
-li button {
-  cursor: pointer;
-  background-color: #f44336;
-  border: none;
-  color:white;
+li .todo-text {
+  flex-grow: 1;
 }
 
+li:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+li:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+
+@media (max-width: 600px) {
+  input {
+    width: 80%;
+  }
+
+  button {
+    width: 80%;
+  }
+}
