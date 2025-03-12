@@ -71,6 +71,9 @@ li {
   justify-content: space-between;
   align-items: center;
 }
+.update{
+  background-color: #28a745;
+}
 
 li .todo-text {
   flex-grow: 1;

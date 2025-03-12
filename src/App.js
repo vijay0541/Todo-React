@@ -67,7 +67,7 @@ const App = () => {
             value={editTodoText}
             onChange={(e) => setEditTodoText(e.target.value)}
           />
-          <button onClick={handleUpdateTodo}>Update Task</button>
+          <button className="update" onClick={handleUpdateTodo}>Update Task</button>
         </div>
       )}
 
